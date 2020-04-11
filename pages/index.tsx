@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import fetch from "isomorphic-unfetch";
 
 const Home = (url) => {
 	const authURL =
@@ -7,7 +8,36 @@ const Home = (url) => {
 	let returned = url.url.asPath;
 	let authCode = returned.substring(15, 163);
 
-	console.log(authCode);
+	const getCurrentSong = async (authCode) => {
+		console.log(authCode);
+
+		const getSong = await fetch(
+			"https://api.spotify.com/v1/me/player/currently-playing",
+			{
+				headers: {
+					Accept: "application/json",
+					Authorization: "Bearer " + authCode,
+					"Content-Type": "application/json",
+				},
+			}
+		);
+
+		let currentSong = await getSong.json();
+		console.log(currentSong);
+		console.log(currentSong.timestamp);
+		const albumArt = currentSong.item.album.images[1].url;
+		const songTitle = currentSong.item.name;
+		const albumTitle = currentSong.item.album.name;
+		const artistTitle = currentSong.item.album.artists[0].name;
+		const barsCounter = 0;
+		const barsTime = [];
+		// getAudioFeatures(currentSong, token);
+	};
+	// setInterval(getCurrentSong, 5000);
+	if (authCode.length > 0) {
+		getCurrentSong(authCode);
+	}
+	console.log(returned);
 	return (
 		<>
 			<div className="welcome">
