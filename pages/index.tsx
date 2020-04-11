@@ -52,24 +52,5 @@ const Home = (url) => {
 		</>
 	);
 };
-const getInitialPropr = () => {
-	const getBaseUrl = (req) => {
-		let url;
-
-		if (req) {
-			// Server side rendering
-			console.log(req);
-			console.log(req.connection.encrypted); // undefined
-			console.log(req.protocol); // undefined
-			url = req.protocol + "://" + req.headers.host;
-		} else {
-			// Client side rendering
-			console.log("else");
-			url = window.location.protocol;
-		}
-
-		return url;
-	};
-};
 
 export default Home;
