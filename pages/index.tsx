@@ -7,10 +7,9 @@ import Header from "../components/Header";
 const Home = (url) => {
 	const authURL =
 		"https://accounts.spotify.com/authorize?client_id=680a695ebdd6426c88761c2addb026e3&redirect_uri=http://localhost:3000/&scope=user-read-currently-playing&response_type=token&state=123";
-	let returned = url.url.asPath;
-	let authCode = returned.substring(15, 163);
+	const returned = url.url.asPath;
+	const authCode = returned.substring(15, 163);
 
-	console.log(returned);
 	return (
 		<>
 			<div className="welcome">
@@ -25,5 +24,4 @@ const Home = (url) => {
 		</>
 	);
 };
-
 export default Home;
