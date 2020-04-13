@@ -21,6 +21,12 @@ const Home = url => {
           </h1>
         )}
       </div>
+      <style jsx>{`
+        * {
+          margin: 0 !important;
+          padding: 0;
+        }
+      `}</style>
     </>
   );
 };

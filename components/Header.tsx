@@ -51,7 +51,7 @@ const Header = ({ authCode, url }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [code, songTitle]);
+  }, [code, songTitle, albumArt]);
 
   return (
     <>
@@ -67,14 +67,21 @@ const Header = ({ authCode, url }) => {
         </div>
       </header>
       {currentSong != null ? (
-        <Visualizer authCode={code} currentSong={currentSong} />
-      ) : null}
+        <Visualizer authCode={code} theCurrentSong={currentSong} />
+      ) : // <p>visualizer</p>
+      null}
       <style jsx>{`
         header {
           display: flex;
           flex-wrap: nowrap;
           justify-content: space-between;
+          height: 20vh;
+          background: rgba(0, 0, 0, 0.6);
+          width: 100%;
+          z-index: 99;
+          position: relative;
         }
+
         .left > h1 {
           font-size: 18px;
         }
@@ -93,12 +100,14 @@ const Header = ({ authCode, url }) => {
 
         .right img {
           width: auto;
-          height: 100px;
+          height: 100%;
         }
         .right p {
           margin: 0;
           padding: 2px;
           font-size: 12px;
+          color: #fffff0;
+          font-family: "Open sans", sans-serif;
         }
         .right p:nth-child(1) {
           font-weight: 400;
